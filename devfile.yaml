@@ -1,0 +1,24 @@
+schemaVersion: 2.1.0
+metadata:
+  name: quarkus-quickstart
+components:
+  - container:
+      args:
+        - '-f'
+        - /dev/null
+      command:
+        - tail
+      image: registry.access.redhat.com/ubi8/ubi-minimal
+      memoryLimit: 64M
+      mountSources: true
+      sourceMapping: /projects
+    name: ubi-minimal
+commands:
+  - exec:
+      commandLine: mvn package
+      component: tools
+      group:
+        isDefault: true
+        kind: build
+      workingDir: '${PROJECT_SOURCE}/getting-started'
+    id: package
